@@ -1,0 +1,92 @@
+<div class="container-fluid mb-5 mt-3">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <h1>{{titleForm}}</h1>
+      <hr>
+    </div>
+    <div class="col-md-6 offset-md-3" *ngIf="productForm">
+      <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="example-form" novalidate>
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="" appearance="fill" style=" width: 100% !important;">
+              <mat-label>Nombre del documento</mat-label>
+              <mat-icon matSuffix>assignment</mat-icon>
+              <input matInput formControlName="name" placeholder="Mi producto">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <mat-form-field appearance="fill" floatLabel="always" style=" width: 100% !important;">
+              <mat-label>Peso KB(cambia automatica mente)</mat-label>
+              <input matInput type="number" min="1" class="example-right-align" placeholder="00"
+                formControlName="price">
+              <span matPrefix>></span>
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <mat-form-field appearance="fill" style=" width: 100% !important;">
+              <mat-label>Tipo de documento</mat-label>
+              <mat-select for="type" id="type" name="type" formControlName="speciality">
+                <mat-optgroup label="Seleccione una opción">
+                  <mat-option *ngFor="let typeProduct of typesProduct" [value]="typeProduct.id">
+                    {{typeProduct.name}}
+                  </mat-option>
+                </mat-optgroup>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="example-full-width" appearance="fill" style=" width: 100% !important;">
+              <mat-label>Especificaciones propias</mat-label>
+              <mat-icon matSuffix>assignment_late</mat-icon>
+              <input matInput placeholder="Ej. llenar datos faltantes de facturas" formControlName="notas">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <mat-form-field appearance="fill" style=" width: 100% !important;">
+              <mat-label>Estado de producto</mat-label>
+              <mat-select formControlName="status" for="status" id="status" name="status" formControlName="status">
+                <mat-option>Ninguno</mat-option>
+                <mat-option value="4">Activo</mat-option>
+                <mat-option value="5">Inactivo</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col">
+
+          </div>
+        </div>
+        <div class="mb-3">
+          <mat-form-field class="example-full-width" appearance="fill" style=" width:100% !important;">
+            <mat-label>Descripción</mat-label>
+            <mat-icon matSuffix>abc</mat-icon>
+            <textarea matInput placeholder="Ej. registro de estudiantes"
+              formControlName="description"></textarea>
+          </mat-form-field>
+        </div>
+        <div class="mb-3">
+          <mat-card>
+            <div class="file">
+              <p class="text">Agregar Documento</p>
+              <input id="addFile" type="file" class="" multiple name="" (change)="onImageSelected($event)" id=""
+                #inputImage>
+            </div>
+            <mat-card *ngFor="let url of imagePreview; let i = index" id="imageCard">
+              <button matPrefix mat-icon-button color="warn" (click)="onRemoveImage(i)">
+                <mat-icon>do_not_disturb_on</mat-icon>
+              </button>
+              <img [src]="url" (click)="inputImage.click()" alt="Image preview" class="m-2" #inputImage>
+
+            </mat-card>
+          </mat-card>
+        </div>
+        <button mat-flat-button type="submit" color="primary">Guardar</button>
+      </form>
+    </div>
+  </div>
+</div>

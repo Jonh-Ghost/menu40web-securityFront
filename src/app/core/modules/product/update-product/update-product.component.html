@@ -1,0 +1,3 @@
+<ng-template [ngIf]="productModel">
+  <app-form-product [titleForm]="titleForm" [isUpdate]="true" (ngProductData)="save($event)" [productData]="productModel"></app-form-product>
+</ng-template>

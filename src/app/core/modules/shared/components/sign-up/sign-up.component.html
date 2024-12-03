@@ -1,0 +1,57 @@
+<ng-container *ngIf="signUpForm">
+  <form class="container mt-5 mb-5" [formGroup]="signUpForm" novalidate>
+
+    <div class="row">
+
+      <mat-card class="col-md-4 offset-md-4 mt-5 mb-5 mat-elevation-z8">
+        <mat-card-title class="text-center mt-3 mb-3">{{title}}</mat-card-title>
+        <mat-card-content>
+          <hr>
+          <div class="row">
+            <mat-form-field class="col-md-10 offset-md-1 mt-5" appearance="legacy">
+              <mat-label>Nombre</mat-label>
+              <input type="text" name="name" formControlName="name" matInput placeholder="Nombre">
+              <mat-icon matSuffix>account_box</mat-icon>
+              <mat-error *ngIf="errorHandling('name', 'required')">Campo obligatorio</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field class="col-md-10 offset-md-1" appearance="legacy">
+              <mat-label>Apellidos</mat-label>
+              <input type="text" name="lastName" formControlName="lastName" matInput placeholder="Apellido">
+              <mat-icon matSuffix>account_box</mat-icon>
+              <mat-error *ngIf="errorHandling('lastName', 'required')">Campo obligatorio</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field class="col-md-10 offset-md-1" appearance="legacy">
+              <mat-label>Correo</mat-label>
+              <input type="email" name="email" formControlName="email" matInput placeholder="username@domain.com">
+              <mat-icon matSuffix>alternate_email</mat-icon>
+              <mat-error *ngIf="errorHandling('email', 'required')">Campo obligatorio</mat-error>
+              <mat-error *ngIf="errorHandling('email', 'email')">Ingrese un correo válido</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field class="col-md-10 offset-md-1" appearance="legacy">
+              <mat-label>Contraseña</mat-label>
+              <input [type]="isInputPassword ? 'password' : 'text'" name="password" formControlName="password" matInput
+                [placeholder]="isInputPassword ? '********' : '12345678'">
+              <mat-icon matSuffix (click)="isInputPassword = !isInputPassword">{{isInputPassword ? 'visibility' :
+                'visibility_off'}}</mat-icon>
+              <mat-error *ngIf="errorHandling('password', 'required')">Campo obligatorio</mat-error>
+            </mat-form-field>
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <div class="row">
+            <div class="col-md-12 text-center mb-5">
+              <a mat-raised-button routerLink="/home">Salir</a>
+              <button mat-raised-button color="primary" (click)="onSubmit(signUpForm)">{{saveBtnText}}</button>
+            </div>
+          </div>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </form>
+</ng-container>

@@ -1,0 +1,48 @@
+<mat-progress-bar mode="indeterminate" color="accent" *ngIf="showProgressBar"></mat-progress-bar>
+<mat-card>
+  <mat-card-title>Nuevo Negocio</mat-card-title>
+  <mat-card-content>
+    <mat-stepper linear #stepper>
+      <mat-step>
+        <ng-template matStepLabel>Informaci&oacute;n del propietario</ng-template>
+        <app-sign-up [title]="'Información del propietario'" (data)="getInfoOwner($event)" [saveBtnText]="'Continuar'"></app-sign-up>
+      </mat-step>
+      <mat-step >
+        <ng-template matStepLabel>Informaci&oacute;n del negocio</ng-template>
+        <app-form-business [title]="'Información del negocio'" (ngBusinessData)="getInfoBusiness($event)" [typesBusiness]="typesBusiness"> </app-form-business>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Resumen</ng-template>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <h1>Resumen</h1>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <h2>Información del propietario</h2>
+              <ul class="list-group">
+                <li class="list-group-item">Nombre: {{ownerModel?.name}}</li>
+                <li class="list-group-item">Apellidos: {{ownerModel?.lastName}}</li>
+                <li class="list-group-item">Correo: {{ownerModel?.email}}</li>
+              </ul>
+            </div>
+            <div class="col-md-6">
+              <h2>Información del negocio</h2>
+              <ul class="list-group">
+                <li class="list-group-item">Nombre: {{businessModel?.name}}</li>
+                <li class="list-group-item">Tipo: {{businessModel?.typeBusiness?.name}} ({{businessModel?.typeBusiness?.description}})</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="createAccount()">Enviar</button>
+        </div>
+      </mat-step>
+    </mat-stepper>
+  
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,67 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <h1>Lista de menus <a class="btn btn-success" role="button" href="#" routerLink="create"><i
+            class="material-icons">add_box</i> </a> </h1>
+    </div>
+    <app-form-menu-filter (ngMenuDataFilter)="onSubmit($event)"></app-form-menu-filter>
+    <div class="col-md-6 offset-md-3">
+
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+
+        <!-- Id Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+          <td mat-cell *matCellDef="let i = index"> {{i + 1}}</td>
+        </ng-container>
+
+        <!-- Code Column -->
+        <ng-container matColumnDef="code">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Códio </th>
+          <td mat-cell *matCellDef="let menuD"> {{menuD.code}} </td>
+        </ng-container>
+
+        <!-- status Column -->
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Estatus </th>
+          <td mat-cell *matCellDef="let menuD">
+            <mat-chip-list aria-label="Fish selection">
+              <mat-chip *ngIf="menuD.status === 3" color="certified" selected>Certificado</mat-chip>
+              <mat-chip *ngIf="menuD.status === 4" color="success" selected>Activo</mat-chip>
+              <mat-chip *ngIf="menuD.status === 5" color="warn" selected>Inactivo</mat-chip>
+            </mat-chip-list>
+          </td>
+        </ng-container>
+
+        <!-- type Column -->
+        <ng-container matColumnDef="typeMenu">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Tipo de menú</th>
+          <td mat-cell *matCellDef="let menuD">{{menuD.typeMenu.name}}</td>
+        </ng-container>
+
+        <!-- options Column -->
+        <ng-container matColumnDef="acciones">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Acciones </th>
+          <td mat-cell *matCellDef="let menuD">
+            <a mat-icon-button color="primary" aria-label="Agregar producto" href="#" [routerLink]="menuD.id + '/' + menuD.typeMenu.id + '/menuProduct'">
+              <mat-icon>star</mat-icon>
+            </a>
+            <a mat-icon-button color="primary" aria-label="Editar producto" href="#" [routerLink]="'update/' + menuD.id">
+              <mat-icon>edit</mat-icon>
+            </a>
+            <button mat-icon-button color="warn" aria-label="Eliminar producto" (click)="delete(menuD)">
+              <mat-icon>delete_forever</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <mat-paginator [pageSizeOptions]="[5, 10]" showFisrtLastButtons aria-label="Select page of products">
+      </mat-paginator>
+      <ng-template #noDataMsg>
+        <div class="alert alert-warning" role="alert">No hay datos disponibles</div>
+      </ng-template>
+    </div>
+  </div>
+</div>

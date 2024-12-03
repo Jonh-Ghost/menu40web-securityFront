@@ -1,0 +1,51 @@
+<div class="container-fluid mb-5 mt-3">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <h1>{{titleForm}}</h1>
+      <hr>
+    </div>
+    <div class="col-md-6 offset-md-3">
+      <form [formGroup]="menuForm!" (ngSubmit)="onSubmit()" novalidate>
+        <div class="mb-3">
+          <mat-card >
+            <div class="file">
+              <p class="text">Agregar Imagen</p>
+              <input id="addFile" type="file" class="" multiple name="" (change)="onImageSelected($event)" id="" #inputImage>
+            </div>
+            <mat-card *ngFor="let url of imagePreview; let i = index" id="imageCard">
+              <button matPrefix mat-icon-button color="warn" (click)="onRemoveImage(i)">
+                <mat-icon>do_not_disturb_on</mat-icon>
+              </button>
+              <img [src]="url" (click)="inputImage.click()" alt="Image preview" class="m-2" #inputImage>
+            </mat-card>
+          </mat-card>
+        </div>
+        <div class="col">
+          <mat-form-field appearance="fill" style=" width: 100% !important;">
+            <mat-label>Estado</mat-label>
+            <mat-select formControlName="status">
+              <mat-optgroup label="Estado del Menú">
+                <mat-option *ngFor="let option of optionStatus" [value]="option.id">
+                  {{option.name}}
+                </mat-option>
+              </mat-optgroup>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field appearance="fill" style=" width: 100% !important;">
+            <mat-label>Tipo de menú</mat-label>
+            <mat-select formControlName="typeMenu">
+              <mat-optgroup label="Comida">
+                <mat-option *ngFor="let typeMenu of typesMenu" [value]="typeMenu.id">
+                  {{typeMenu.name}}
+                </mat-option>
+              </mat-optgroup>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <button mat-flat-button type="submit" color="primary">Guardar</button>
+      </form>
+    </div>
+  </div>
+</div>

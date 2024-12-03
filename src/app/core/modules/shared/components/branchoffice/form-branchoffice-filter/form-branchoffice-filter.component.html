@@ -1,0 +1,36 @@
+<div class="container-fluid">
+  <div class="row">
+  <div class="col-md-10 offset-md-1">
+      <h2>Busqueda por filtros</h2>
+  </div>
+  
+  <div class="col-md-10 offset-md-1" *ngIf="branchofficeFormFilter">
+    <form [formGroup]="branchofficeFormFilter" (ngSubmit)="onSubmit()"  class="example-form">
+
+      <mat-form-field appearance="standard" floatLabel="always">
+        <mat-label>Nombre Sucursal</mat-label>
+        <input matInput  placeholder="Sucursal" formControlName="name" >
+      </mat-form-field>
+
+      <mat-form-field appearance="standard" floatLabel="always">
+        <mat-label>Encargado</mat-label>
+        <input matInput  placeholder="Manager" formControlName="nameManager" >
+      </mat-form-field>
+
+      <mat-form-field appearance="standard" floatLabel="always">
+        <mat-label>Telefono</mat-label>
+        <input matInput  placeholder="5544332211" formControlName="phone" >
+      </mat-form-field>
+
+      <mat-form-field appearance="standard">
+        <mat-label>Estado de Sucursal</mat-label>
+        <mat-select formControlName="active" for="active" id="active" name="active" formControlName="active">
+            <mat-option value="1">Activo</mat-option>
+            <mat-option value="2">Inactivo</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button type="submit" mat-raised-button color="primary">Buscar</button>
+    </form>
+  </div>
+  

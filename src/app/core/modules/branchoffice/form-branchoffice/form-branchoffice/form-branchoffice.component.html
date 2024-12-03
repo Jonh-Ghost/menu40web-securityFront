@@ -1,0 +1,84 @@
+<ng-container *ngIf="branchofficeForm">
+  <form class="container mt-5 mb-5" [formGroup]="branchofficeForm" novalidate>
+  
+    <div class="row">  
+      <mat-card class="col-md-4 offset-md-2 mt-5 mb-5 mat-elevation-z8">
+        <mat-card-title class="text-center mt-3 mb-3">{{title}}</mat-card-title>
+        <mat-card-content>
+          <div class="row">
+            <mat-form-field class="col-md-10 offset-md-1 mt-5" appearance="legacy">
+              <mat-label>Nombre</mat-label>
+              <input type="text" name="name" formControlName="name" matInput placeholder="Nombre de sucursal">
+              <mat-icon matSuffix>account_box</mat-icon>
+              <mat-error *ngIf="errorHandling('name', 'required')">Campo obligatorio</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field class="col-md-10 offset-md-1" appearance="legacy">
+              <mat-label>Nombre de encargado</mat-label>
+              <input type="text" name="nameManager" formControlName="nameManager" matInput placeholder="Nombre de encargado">
+              <mat-icon matSuffix>account_box</mat-icon>
+              <mat-error *ngIf="errorHandling('nameManager', 'required')">Campo obligatorio</mat-error>
+            </mat-form-field> 
+          </div>
+          <div class="row">
+            <mat-form-field class="col-md-10 offset-md-1" appearance="legacy">
+              <mat-label>Dirección</mat-label>
+              <input type="text" name="address" formControlName="address" matInput placeholder="Dirección">
+              <mat-icon matSuffix>location_on</mat-icon>
+              <mat-error *ngIf="errorHandling('address', 'required')">Campo obligatorio</mat-error>
+            </mat-form-field> 
+          </div>
+          <div class="row">
+            <mat-form-field class="col-md-10 offset-md-1" appearance="legacy">
+              <mat-label>Telefono</mat-label>
+              <input type="tel" name="phone" formControlName="phone" matInput placeholder="Telefono">
+              <mat-icon matSuffix>phone</mat-icon>
+              <mat-error *ngIf="errorHandling('phone', 'required')">Campo obligatorio</mat-error>
+            </mat-form-field> 
+          </div>
+          <div class="row">
+            <mat-form-field class="col-md-10 offset-md-1" appearance="legacy">
+              <mat-label>Correo</mat-label>
+                <input type="email" name="email" formControlName="email" matInput placeholder="branchoffice@domain.com">
+                <mat-icon matSuffix>alternate_email</mat-icon>
+                <mat-error *ngIf="errorHandling('email', 'required')">Campo obligatorio</mat-error>
+                <mat-error *ngIf="errorHandling('email', 'email')">Ingrese un correo válido</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="row">
+            <mat-form-field class="col-md-10 offset-md-1" appearance="legacy">
+              <mat-label>Url QR</mat-label>
+                <input type="text" name="publicPath" formControlName="publicPath" matInput placeholder="">
+                <mat-icon matSuffix>blur_on</mat-icon>
+            </mat-form-field>
+          </div>
+
+          <div class="row">
+            <mat-form-field class="col-md-10 offset-md-1" appearance="legacy">
+              <mat-label>Estado de sucursal</mat-label>
+              <mat-select formControlName="active" for="active" id="active" name="active" formControlName="active">
+                  <mat-option value="1">Activo</mat-option>
+                  <mat-option value="2">Inactivo</mat-option>
+                </mat-select>
+            </mat-form-field>
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <div class="row">
+            <div class="col-md-12 text-center mb-5">
+              <a mat-raised-button color="warn" routerLink="/home">Salir</a>
+              <button mat-raised-button color="primary" (click)="onSubmit(branchofficeForm)">Enviar</button>
+            </div>
+          </div>
+        </mat-card-actions>
+      </mat-card>
+      <div class="col-md-2 mt-5 mb-5">
+        <img style="border-radius: 10px;border: 1px solid #000; " [src]="branchofficeData?.urlActive" >
+        <button (click)="downloadFileQr()" mat-raised-button color="accent" class="mt-2"><mat-icon>save_alt</mat-icon>Descarga QR</button>
+      </div>
+    </div>
+  </form>
+  
+</ng-container>

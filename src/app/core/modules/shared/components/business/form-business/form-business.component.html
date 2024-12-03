@@ -1,0 +1,51 @@
+<ng-container *ngIf="businessForm">
+  <form class="container mt-5 mb-5" [formGroup]="businessForm" (ngSubmit)="onSubmit()" novalidate>
+    <div class="row">
+      <mat-card class="col-md-4 offset-md-4 mt-5 mb-5 mat-elevation-z8">
+        <div *ngIf="businessForm">
+          <mat-card-title class="text-center mt-5 mb-5">Información del negocio</mat-card-title>
+          <mat-card-content>
+            <hr>
+            <div class="row">
+  
+              <mat-form-field class="col-md-10 offset-md-1 mt-5" appearance="legacy">
+                <mat-label for="name" class="form-label">Nombre</mat-label>
+                <input matInput type="text" formControlName="name" class="form-control" id="name" required>
+                <mat-icon matSuffix>store</mat-icon>
+                <ng-template [ngIf]="isSubmit">
+                  <span
+                    *ngIf="businessForm?.get('name')?.errors?.['required'] && businessForm?.get('name')?.invalid"
+                    class="text-danger">Campo obligatorio</span>
+                </ng-template>
+              </mat-form-field>
+  
+              <div class="row">
+                <div class="col">
+                  <mat-form-field class="col-md-10 offset-md-1" appearance="fill">
+                    <mat-label class="form-label">Tipo de restaurante</mat-label>
+                    <mat-select formControlName="typeBusiness" for="typeBusiness" id="typeBusiness" name="typeBusiness" formControlName="typeBusiness">
+                      <mat-option [value]="typeBusiness.id" *ngFor="let typeBusiness of typesBusiness">{{typeBusiness.name}} | {{typeBusiness.description}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <mat-icon matSuffix>store</mat-icon>
+                </div>
+              </div>
+            </div>
+  
+            <!-- <button type="submit" class="btn btn-primary">Guardar</button> -->
+          </mat-card-content>
+        </div>
+  
+  
+        <mat-card-actions>
+          <div class="row">
+            <div class="col-md-12 text-center mb-5">
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </div>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </form>
+</ng-container>

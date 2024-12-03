@@ -1,0 +1,102 @@
+<mat-card class="container mt-5">
+  <mat-card-title>
+    LISTA DE USUARIOS <!-- <a mat-raised-button color="primary" routerLink="create"> Agregar </a> -->
+  </mat-card-title>
+  <mat-card-subtitle>Busqueda con filtros</mat-card-subtitle>
+  <mat-card-content>
+    <div class="row">
+      <div class="col-md-10 offset-md-1">
+        <form class="example-form">
+          <mat-form-field >
+            <mat-label> Nombre del usuario </mat-label>
+            <input matInput  placeholder="Ej. Fonda Doña ces">
+          </mat-form-field>        
+                  
+          <mat-form-field appearance="standard">
+            <mat-label>Tipo de usuario</mat-label>
+            <mat-select >
+            
+                <mat-option matInput value="1">Consultador</mat-option>
+              
+              
+                <mat-option matInput value="2" >Adminmistrador</mat-option>
+                <mat-option matInput value="3" >Manteniiento</mat-option>
+                <mat-option matInput value="4" >Gestor</mat-option>
+             
+            </mat-select>
+          </mat-form-field>
+          <button mat-flat-button color="certified">Buscar</button>
+        </form>
+      </div>
+    </div> 
+
+    <div class="row">
+      <div class="col-md-10 offset-md-1 mb-5 mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" class=" w-100"  matSort>      
+          <!-- Position Column -->
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-heade> No. </th>
+            <td mat-cell *matCellDef="let i = index"> {{ i + 1 }} </td>
+          </ng-container>
+      
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-heade> Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          </ng-container>
+      
+          <!-- Weight Column -->
+          <ng-container matColumnDef="typeBusiness">
+            <th mat-header-cell *matHeaderCellDef mat-sort-heade> Tipo </th>
+            <td mat-cell *matCellDef="let element"> {{element.typeBusiness.description }} </td>
+          </ng-container>
+
+          <!-- Columna de botones -->
+          <ng-container matColumnDef="botones">
+            <th mat-header-cell *matHeaderCellDef> Acciones 
+              <button mat-icon-button aria-label="Agregar negocio" routerLink="create">
+                <mat-icon>add</mat-icon>
+              </button>
+            </th>
+            <td mat-cell *matCellDef="let element">
+              <a mat-icon-button color="primary" aria-label="Editar producto" href="#" [routerLink]="">
+                <mat-icon> edit </mat-icon>
+              </a>
+              <button mat-icon-button color="warn" (click)="delete(element)"><mat-icon>delete</mat-icon></button>
+             
+              <a mat-icon-button color="primary" aria-label="Activar/desactivar" href="#" [routerLink]="">
+                <mat-icon>check_circle</mat-icon>
+              </a>
+              <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item [routerLink]="element.id + '/branchoffice'">
+                  <mat-icon>store</mat-icon>
+                  <span>Sucursales</span>
+                </button>
+                <button mat-menu-item [routerLink]="element.id + '/product'">
+                  <mat-icon>apps</mat-icon>
+                  <span>Productos</span>
+                </button>
+              </mat-menu>
+              <!--<a mat-stroked-button color = "primary" [routerLink] = "element.id + '/menu'"> Menú </a>-->
+            </td>
+          </ng-container>
+      
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      
+        <mat-paginator aria-label="Select page of products" (page)="paginate($event)" [length]="metadata?.pagination?.total" [pageSize]="businessFilter.size"></mat-paginator>
+        <ng-template #noDataMsg>
+          <div  class="alert alert-warning" role="alert">
+            <button mat-icon-button color="warn">
+              <mat-icon> error </mat-icon>
+            </button>No hay datos disponibles</div>
+        </ng-template>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
+  

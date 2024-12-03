@@ -1,0 +1,44 @@
+.mat-success {
+    color: white;
+    background-color: rgb(77, 240, 77);
+}
+
+.mat-food {
+    color: black;
+    background-color: #FFCE1A;
+}
+
+.mat-drink {
+    color: black;
+    background-color: #1ad1ff;
+}
+
+.mat-coctel {
+    color: black;
+    background-color: #1affc6;
+}
+
+.mat-certified {
+    color: white;
+    background-color: #1a63ff;
+}
+
+table {
+    width: 100%;
+    height: 100%;
+}
+
+td,
+th {
+    width: 5%;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}

@@ -1,0 +1,20 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-9 offset-md-3">
+      <div class="example-container">
+        <h2>Documentos</h2>
+        <div cdkDropList #MenuproductList="cdkDropList" [cdkDropListData]="productList"
+          [cdkDropListConnectedTo]="[productsList]" class="example-list" (cdkDropListDropped)="drop($event)">
+          <div class="example-box" *ngFor="let item of productList " cdkDrag>{{item.name}}</div>
+        </div>
+      </div>
+      <div class="example-container">
+        <h2>Mis Documentos</h2>
+        <div cdkDropList #productsList="cdkDropList" [cdkDropListData]="myProductList"
+          [cdkDropListConnectedTo]="[MenuproductList]" class="example-list" (cdkDropListDropped)="drop($event)">
+          <div class="example-box" *ngFor="let item of myProductList" cdkDrag>{{item.name}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

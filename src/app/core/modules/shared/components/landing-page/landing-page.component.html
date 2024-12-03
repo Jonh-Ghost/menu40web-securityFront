@@ -1,0 +1,24 @@
+<div class="container-fluid">
+    <div class="row text-center">
+        <div class="col-md-12 p-2">
+            <h1>Lista de negocios</h1>
+        </div>
+        <div class="col-md-12">
+            <mat-spinner class="spinner" *ngIf="validateSpinner"></mat-spinner>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 p-2" *ngFor="let landingPage of landingPageArray">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>{{landingPage.name}}</mat-card-title>
+                    <mat-card-subtitle>{{landingPage.typeBusiness?.name}}</mat-card-subtitle>
+                </mat-card-header>
+                <img mat-card-image src="https://vistapointe.net/images/restaurant-8.jpg" alt="Foto de negocio">
+                <mat-card-content>
+                    <p> {{landingPage.typeBusiness?.description}} </p>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>

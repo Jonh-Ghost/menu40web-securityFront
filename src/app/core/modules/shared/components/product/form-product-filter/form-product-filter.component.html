@@ -1,0 +1,46 @@
+<div class="col-md-6 offset-md-3 mt-4">
+    <mat-list>
+      <mat-divider></mat-divider>
+      <mat-list-item><h2>Busqueda por filtros</h2></mat-list-item>
+      <mat-divider ></mat-divider>
+    </mat-list>
+  </div>
+
+  <div class="col-md-6 offset-md-3" *ngIf="productFormFilter">
+    <form [formGroup]="productFormFilter" (ngSubmit)="onSubmit()"  class="example-form">
+      <mat-form-field appearance="standard" floatLabel="always">
+        <mat-label>Nombre de documento</mat-label>
+        <input matInput  placeholder="Ej. 2520160111" formControlName="name" >
+      </mat-form-field>
+      <mat-form-field appearance="standard" floatLabel="always">
+        <mat-label>Descripción</mat-label>
+        <input matInput  placeholder="Ej. Docuymentación estudiantes 2022" formControlName="speciality" >
+      </mat-form-field>
+      <mat-form-field appearance="standard" floatLabel="always" >
+        <mat-label>Peso GB</mat-label>
+        <input matInput type="number" step="0.50" value="0.00" min="1.00" class="example-right-align" placeholder="0.00" for="price" id="price" name="price" formControlName="price" placeholder="00" >
+        <span matPrefix>></span>
+      </mat-form-field>
+
+      <mat-form-field appearance="standard">
+        <mat-label>Estado del documento</mat-label>
+        <mat-select formControlName="status" for="status" id="status" name="status" formControlName="status">
+            <mat-option >Ninguno</mat-option>
+            <mat-option value="4">Activo</mat-option>
+            <mat-option value="5">Inactivo</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="standard">
+        <mat-label>Tipo de documento</mat-label>
+        <mat-select  formControlName="type" for="type" id="type" name="type" formControlName="type">
+          <mat-option>Ninguno</mat-option>
+            <mat-option matInput value="1">Tipo1</mat-option>
+            <mat-option matInput value="2" >Tipo2</mat-option>
+            <mat-option matInput value="3" >Tipo3</mat-option>
+            <mat-option matInput value="4" >Tipo4</mat-option>
+          
+        </mat-select>
+      </mat-form-field>
+      <button mat-flat-button type="submit" color="certified">Buscar</button>
+    </form>
+  </div>

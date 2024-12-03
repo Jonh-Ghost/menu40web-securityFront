@@ -1,0 +1,29 @@
+<ng-container *ngIf="layoutAsAdmin">
+  <app-adm-header (ngExpandSideBar)="onExpandSideBar()"></app-adm-header>
+  <mat-drawer-container class="example-container" [hasBackdrop]="false">
+    <mat-drawer #drawer [mode]="'side'" style="padding-right: 30px; padding-left: 20px;">
+      <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+        <mat-tree-node *matTreeNodeDef="let node" [routerLink]="node.item.path">
+          <button mat-icon-button disabled></button>
+          {{node.item.name}}
+        </mat-tree-node>
+        <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodeToggle matTreeNodePadding>
+          <mat-icon class="menu-item-icon">
+            {{node.item.icon}}
+          </mat-icon>
+          {{node.item.name}}
+        </mat-tree-node>
+      </mat-tree>
+    </mat-drawer>
+    <mat-drawer-content>
+      <router-outlet></router-outlet>
+    </mat-drawer-content>
+  </mat-drawer-container>
+  <app-adm-footer></app-adm-footer>
+</ng-container>
+
+<ng-container *ngIf="noSesion">
+  <app-header></app-header>
+  <router-outlet></router-outlet>
+  <app-footer></app-footer>
+</ng-container>

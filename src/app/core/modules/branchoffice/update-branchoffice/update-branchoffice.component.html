@@ -1,0 +1,3 @@
+<ng-template [ngIf]="branchofficeModel">
+<app-form-branchoffice [title]="'Actualizar sucursal'" [isUpdate]="true" (ngBranchofficeData)="save($event)" [branchofficeData]="branchofficeModel" [business]="businessModel" *ngIf="businessModel"></app-form-branchoffice>
+</ng-template>

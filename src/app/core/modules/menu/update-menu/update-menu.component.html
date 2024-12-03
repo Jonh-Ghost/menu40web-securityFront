@@ -1,0 +1,3 @@
+<ng-template [ngIf]="menuModel">
+    <app-form-menu [titleForm]="titleForm" [typesMenu]="typesMenu" [isUpdateMenu]="true" (ngMenuData)="save($event)" [menuData]="menuModel"></app-form-menu>
+</ng-template>
